@@ -2,7 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
-import {Pock} from '../../actions';
+import {getAllPokemon} from '../../actions';
 import {DataList} from '../../components';
 
 class Main extends React.Component<any, any> {
@@ -11,7 +11,7 @@ class Main extends React.Component<any, any> {
     }
 
     public componentDidMount() {
-        this.props.Pock();
+        this.props.getAllPokemon();
     }
 
     public render() {
@@ -38,7 +38,7 @@ const mapStateToProps = (state: any) => {
 };
 
 const matchDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
-    Pock,
+    getAllPokemon,
 }, dispatch);
 
 export default connect(mapStateToProps, matchDispatchToProps)(Main)

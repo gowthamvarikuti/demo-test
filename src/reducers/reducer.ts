@@ -6,10 +6,15 @@ export const initialState: any = {
 
 const reducer: Reducer<any> = (state: any = initialState, action) => {
     switch (action.type) {
-        case 'GET_POKEMON':
+        case 'GET_ALL_POKEMON':
             return {...state, result: [...action.payload.results]};
+            break;
+        case 'GET_POKEMON':
+            return {...state, pokemonData: {...action.payload}};
+            break;
         default:
             return state;
+            break;
     }
 };
 

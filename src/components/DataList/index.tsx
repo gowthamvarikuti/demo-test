@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Link} from 'react-router-dom';
 
 export class DataList extends React.Component<any> {
 
@@ -25,24 +26,27 @@ export class DataList extends React.Component<any> {
 
         return (
             <div>
-                {
-                    data.map((pokemon: any, key: number) => {
-                        const splitData = pokemon.url.split('/');
-                        pokemon.number = splitData[splitData.length - 2];
-                        pokemon.imageName = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.number}.png`;
-                        return (
-                            <div className="data-preview" key={`${pokemon.name}-${key}`}>
-                                <div className="data-meta">
-
-                                    <div className="info">
-                                        {pokemon.name}
-                                        <img src={pokemon.imageName} alt=""/>
-                                    </div>
+                <ul>
+                    {
+                        data.map((pokemon: any, key: number) => {
+                            const splitData = pokemon.url.split('/');
+                            pokemon.number = splitData[splitData.length - 2];
+                            pokemon.imageName = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.number}.png`;
+                            return (
+                                <div className="data-preview" key={`${pokemon.name}${key}`}>
+                                    <Link className="pokemon" to={{ pathname: `/pokemon/${pokemon.number}`, state: { url: pokemon.url} }}>
+                                        <li>
+                                            <div className="info">
+                                                {pokemon.name}
+                                                <img src={pokemon.imageName} alt={pokemon.name}/>
+                                            </div>
+                                        </li>
+                                    </Link>
                                 </div>
-                            </div>
-                        );
-                    })
-                }
+                            );
+                        })
+                    }
+                </ul>
             </div>
         );
     }
